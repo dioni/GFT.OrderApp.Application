@@ -1,0 +1,32 @@
+<div>
+  <h3>Restaurant Order App (technical test)</h3>
+
+  <form [formGroup]="orderForm" (ngSubmit)="sendOrder()">
+    <div class="form-group">
+      <input type="text" class="form-control" id="validationCustomUsername" formControlName="input" placeholder="input"
+        aria-describedby="inputGroupPrepend" required>
+      <div *ngFor="let error of errors"class="is-invalid">
+          {{ error }}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Send order</button>
+    <div class="alert alert-light" role="alert">
+      {{ lastRequestedOrder }}
+    </div>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Order history</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of requestedOrders">
+        <td>
+          {{ order }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
