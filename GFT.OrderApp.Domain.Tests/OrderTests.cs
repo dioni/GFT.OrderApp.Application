@@ -97,5 +97,51 @@ namespace GFT.OrderApp.Domain.Tests
                 validator.ValidateDishesCount(dishes, TimeOfDay.Morning).Guard();
             });
         }
+
+        [Test]
+        public void Must_return_eggs_toast_coffee()
+        {
+            var order = new Order(TimeOfDay.Morning);
+            order.AddDish(MorningMenu.Choose(DishType.Entree));
+            order.AddDish(MorningMenu.Choose(DishType.Side));
+            order.AddDish(MorningMenu.Choose(DishType.Drink));
+
+            Assert.AreEqual("eggs, toast, coffee", order.ToString());
+        }
+
+        [Test]
+        public void Must_return_eggs_toast_coffee_too()
+        {
+            var order = new Order(TimeOfDay.Morning);
+            order.AddDish(MorningMenu.Choose(DishType.Side));
+            order.AddDish(MorningMenu.Choose(DishType.Entree));
+            order.AddDish(MorningMenu.Choose(DishType.Drink));
+
+            Assert.AreEqual("eggs, toast, coffee", order.ToString());
+        }
+
+        [Test]
+        public void Must_return_eggs_toast_coffee_error()
+        {
+            var order = new Order(TimeOfDay.Morning);
+            order.AddDish(MorningMenu.Choose(DishType.Entree));
+            order.AddDish(MorningMenu.Choose(DishType.Side));
+            order.AddDish(MorningMenu.Choose(DishType.Drink));
+            order.AddDish(MorningMenu.Choose(DishType.Dessert));
+
+            Assert.AreEqual("eggs, toast, coffee, error", order.ToString());
+        }
+
+        [Test]
+        public void Must_return_steak_potato_x2_cake()
+        {
+            var order = new Order(TimeOfDay.Night);
+            order.AddDish(NightMenu.Choose(DishType.Entree));
+            order.AddDish(NightMenu.Choose(DishType.Side));
+            order.AddDish(NightMenu.Choose(DishType.Side));
+            order.AddDish(NightMenu.Choose(DishType.Dessert));
+
+            Assert.AreEqual("steak, potato(x2), cake", order.ToString());
+        }
     }
 }
