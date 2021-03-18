@@ -1,22 +1,20 @@
-﻿using GFT.OrderApp.Domain.Base;
-using GFT.OrderApp.Domain.DishAggregate;
-using GFT.OrderApp.Domain.Exceptions;
-using GFT.OrderApp.Infrastructure;
-using System;
+﻿using GFT.OrderApp.Domain.DishAggregate;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace GFT.OrderApp.Domain.OrderAggregate
 {
-    public class Order : Entity
+    public class Order
     {
         public List<Dish> Dishes { get; private set; }
         public TimeOfDay TimeOfDay { get; private set; }
 
         public Order(TimeOfDay timeOfDay)
         {
-            TimeOfDay = timeOfDay ?? throw new OrderAppDomainException("TimeOfDay is required");
+            OrderValidator.ThatMembers()
+                .ValidateTimeOfDay(timeOfDay)
+                .Guard();
+
             Dishes = new List<Dish>();
         }
 
@@ -49,11 +47,6 @@ namespace GFT.OrderApp.Domain.OrderAggregate
                 }
 
                 dishNames.Add(dishName);
-
-                if (dishName == "error")
-                {
-                    break;
-                }
             }
 
             return string.Join(", ", dishNames);

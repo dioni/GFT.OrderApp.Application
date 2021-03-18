@@ -1,6 +1,5 @@
 ﻿using GFT.OrderApp.Domain.DishAggregate;
 using GFT.OrderApp.Domain.Factories.DishFactory;
-using GFT.OrderApp.Infrastructure.Exceptions;
 using NUnit.Framework;
 
 namespace GFT.OrderApp.Domain.Tests
@@ -9,12 +8,11 @@ namespace GFT.OrderApp.Domain.Tests
     public class DishFactoryTests
     {
         [Test]
-        public void Throw_exception_when_order_a_dessert_on_morning()
+        public void Muste_create_invalid_dish_when_order_a_dessert_on_morning()
         {
-            Assert.Throws<GFTValidationException>(() =>
-            {
-                new MorningMenu().Choose(DishType.Dessert);
-            });
+            var dish = new MorningMenu().Choose(DishType.Dessert);
+
+            Assert.AreEqual("error", dish.Name);
         }
 
         [Test]

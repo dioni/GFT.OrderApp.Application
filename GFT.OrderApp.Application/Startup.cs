@@ -1,10 +1,8 @@
 using GFT.OrderApp.Application.Filters;
 using GFT.OrderApp.Domain.Factories.MenuFactory;
-using GFT.OrderApp.Infrastructure.Notifications;
 using GFT.OrderApp.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
@@ -33,8 +31,7 @@ namespace GFT.OrderApp.Application
             });
 
             services.AddScoped<IOrderService, OrderService>()
-                    .AddScoped<IMenuFactory, MenuFactory>()
-                    .AddScoped<NotificationContext, NotificationContext>();
+                    .AddScoped<IMenuFactory, MenuFactory>();
 
             services.AddMvc(options => options.Filters.Add<ValidationExceptionFilter>())
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);

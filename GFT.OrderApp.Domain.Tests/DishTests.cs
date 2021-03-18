@@ -1,8 +1,6 @@
 ﻿using GFT.OrderApp.Domain.DishAggregate;
-using GFT.OrderApp.Domain.Exceptions;
 using GFT.OrderApp.Infrastructure.Exceptions;
 using NUnit.Framework;
-using System;
 
 namespace GFT.OrderApp.Domain.Tests
 {

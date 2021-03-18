@@ -23,8 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GFT.OrderApp.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GFT.OrderApp.Domain.Tests", "GFT.OrderApp.Domain.Tests\GFT.OrderApp.Domain.Tests.csproj", "{5BD84059-458F-41CB-8091-656EB2D13C34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GFT.OrderApp.Service.Tests", "GFT.OrderApp.Service.Tests\GFT.OrderApp.Service.Tests.csproj", "{6CDDF78B-3DE2-4C4E-BCB0-1535EC6DBDBF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,10 +53,6 @@ Global
 		{5BD84059-458F-41CB-8091-656EB2D13C34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BD84059-458F-41CB-8091-656EB2D13C34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BD84059-458F-41CB-8091-656EB2D13C34}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6CDDF78B-3DE2-4C4E-BCB0-1535EC6DBDBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6CDDF78B-3DE2-4C4E-BCB0-1535EC6DBDBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6CDDF78B-3DE2-4C4E-BCB0-1535EC6DBDBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6CDDF78B-3DE2-4C4E-BCB0-1535EC6DBDBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,7 +64,6 @@ Global
 		{29CC9493-D34B-4549-B305-46D3C1308061} = {F4927483-AC6E-4CCF-87CD-E7DA938C02E3}
 		{0D93A264-76C5-49E2-9E50-A13AFF175532} = {2C2D80CC-81FC-4D80-B564-D26A42B88C99}
 		{5BD84059-458F-41CB-8091-656EB2D13C34} = {16F811B1-8DAB-4F23-B159-2946A4E9B185}
-		{6CDDF78B-3DE2-4C4E-BCB0-1535EC6DBDBF} = {9FB7FDE9-2DF6-4FE8-930E-5A8676C05EC2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F198B435-0486-4D28-BCCA-99DC38C4446A}

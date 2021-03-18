@@ -9,6 +9,14 @@ namespace GFT.OrderApp.Domain.OrderAggregate
     {
         public static OrderValidator ThatMembers() => new OrderValidator();
 
+        public OrderValidator ValidateTimeOfDay(TimeOfDay timeOfDay)
+        {
+            Compute(timeOfDay != null, timeOfDay, "TimeOfDay is required", nameof(Order.TimeOfDay));
+
+            return this;
+        }
+
+
         public OrderValidator ValidateAtLeastOneSelection(int count)
         {
             var success = count > 0;
@@ -44,12 +52,6 @@ namespace GFT.OrderApp.Domain.OrderAggregate
         private bool IsPotatoesOnNight(TimeOfDay timeOfDay, DishType dishType)
         {
             return timeOfDay.ValueEquals(TimeOfDay.Night) && dishType.ValueEquals(DishType.Side);
-        }
-
-        public Validates IsEquals(bool value, bool expected, string message, params string[] memberNames)
-        {
-            var success = value == expected;
-            return Compute(success, value, message, memberNames);
         }
     }
 }
