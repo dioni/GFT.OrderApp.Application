@@ -2,7 +2,7 @@
 
 namespace GFT.OrderApp.Domain.Base
 {
-    public abstract class ValueObject : Entity
+    public abstract class ValueObject
     {
         protected abstract IEnumerable<object> GetAtomicValues();
 

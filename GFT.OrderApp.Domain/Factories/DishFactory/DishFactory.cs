@@ -10,9 +10,10 @@ namespace GFT.OrderApp.Domain.Factories.DishFactory
         protected abstract Dish[] Options { get; }
         public Dish Choose(DishType choice)
         {
-            DishFactoryValidator.ThatMembers()
-                .ValidateChoice(choice, TimeOfDay)
-                .Guard();
+            if (choice.ValueEquals(DishType.Invalid) || (TimeOfDay.ValueEquals(TimeOfDay.Morning) && choice.ValueEquals(DishType.Dessert)))
+            {
+                return new InvalidDish();
+            }
 
             return Options.Single(x => x.DishType == choice);
         }

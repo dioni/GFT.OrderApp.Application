@@ -31,7 +31,7 @@ reset(){
 
   buldForm() {
     this.orderForm = this.fb.group({
-      input: ['morning, 1, 2, 3', Validators.required]
+      input: ['' , Validators.required]
     });
   }
 

@@ -31,7 +31,7 @@ namespace GFT.OrderApp.Service
 
             order.Close();            
 
-            return order.ToString();
+            return order.GenerateOutput();
         }
     }
 }

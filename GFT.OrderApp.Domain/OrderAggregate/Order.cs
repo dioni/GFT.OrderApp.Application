@@ -33,7 +33,7 @@ namespace GFT.OrderApp.Domain.OrderAggregate
                 .Guard();
         }
 
-        public override string ToString()
+        public string GenerateOutput()
         {
             var dishNames = new List<string>();
 
@@ -49,6 +49,11 @@ namespace GFT.OrderApp.Domain.OrderAggregate
                 }
 
                 dishNames.Add(dishName);
+
+                if (dishName == "error")
+                {
+                    break;
+                }
             }
 
             return string.Join(", ", dishNames);

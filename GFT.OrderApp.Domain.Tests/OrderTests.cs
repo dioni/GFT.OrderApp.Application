@@ -3,9 +3,7 @@ using GFT.OrderApp.Domain.Factories.DishFactory;
 using GFT.OrderApp.Domain.OrderAggregate;
 using GFT.OrderApp.Infrastructure.Exceptions;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GFT.OrderApp.Domain.Tests
 {
@@ -106,7 +104,7 @@ namespace GFT.OrderApp.Domain.Tests
             order.AddDish(MorningMenu.Choose(DishType.Side));
             order.AddDish(MorningMenu.Choose(DishType.Drink));
 
-            Assert.AreEqual("eggs, toast, coffee", order.ToString());
+            Assert.AreEqual("eggs, toast, coffee", order.GenerateOutput());
         }
 
         [Test]
@@ -117,7 +115,7 @@ namespace GFT.OrderApp.Domain.Tests
             order.AddDish(MorningMenu.Choose(DishType.Entree));
             order.AddDish(MorningMenu.Choose(DishType.Drink));
 
-            Assert.AreEqual("eggs, toast, coffee", order.ToString());
+            Assert.AreEqual("eggs, toast, coffee", order.GenerateOutput());
         }
 
         [Test]
@@ -129,7 +127,32 @@ namespace GFT.OrderApp.Domain.Tests
             order.AddDish(MorningMenu.Choose(DishType.Drink));
             order.AddDish(MorningMenu.Choose(DishType.Dessert));
 
-            Assert.AreEqual("eggs, toast, coffee, error", order.ToString());
+            Assert.AreEqual("eggs, toast, coffee, error", order.GenerateOutput());
+        }
+
+        [Test]
+        public void Must_return_eggs_toast_coffee_x_3()
+        {
+            var order = new Order(TimeOfDay.Morning);
+            order.AddDish(MorningMenu.Choose(DishType.Entree));
+            order.AddDish(MorningMenu.Choose(DishType.Side));
+            order.AddDish(MorningMenu.Choose(DishType.Drink));
+            order.AddDish(MorningMenu.Choose(DishType.Drink));
+            order.AddDish(MorningMenu.Choose(DishType.Drink));            
+
+            Assert.AreEqual("eggs, toast, coffee(x3)", order.GenerateOutput());
+        }
+
+        [Test]
+        public void Must_return_steak_potato_wine_cake()
+        {
+            var order = new Order(TimeOfDay.Night);
+            order.AddDish(NightMenu.Choose(DishType.Entree));
+            order.AddDish(NightMenu.Choose(DishType.Side));
+            order.AddDish(NightMenu.Choose(DishType.Drink));
+            order.AddDish(NightMenu.Choose(DishType.Dessert));
+
+            Assert.AreEqual("steak, potato, wine, cake", order.GenerateOutput());
         }
 
         [Test]
@@ -141,7 +164,19 @@ namespace GFT.OrderApp.Domain.Tests
             order.AddDish(NightMenu.Choose(DishType.Side));
             order.AddDish(NightMenu.Choose(DishType.Dessert));
 
-            Assert.AreEqual("steak, potato(x2), cake", order.ToString());
+            Assert.AreEqual("steak, potato(x2), cake", order.GenerateOutput());
+        }
+
+        [Test]
+        public void Must_return_steak_potato_wine_error()
+        {
+            var order = new Order(TimeOfDay.Night);
+            order.AddDish(NightMenu.Choose(DishType.Entree));
+            order.AddDish(NightMenu.Choose(DishType.Side));
+            order.AddDish(NightMenu.Choose(DishType.Drink));
+            order.AddDish(NightMenu.Choose(5));
+
+            Assert.AreEqual("steak, potato, wine, error", order.GenerateOutput());
         }
     }
 }
