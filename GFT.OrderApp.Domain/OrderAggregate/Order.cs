@@ -15,6 +15,7 @@ namespace GFT.OrderApp.Domain.OrderAggregate
                 .ValidateTimeOfDay(timeOfDay)
                 .Guard();
 
+            TimeOfDay = timeOfDay;
             Dishes = new List<Dish>();
         }
 

@@ -21,6 +21,23 @@ namespace GFT.OrderApp.Domain.Tests
         }
 
         [Test]
+        public void Throw_exception_when_not_pass_a_time_of_day()
+        {
+            Assert.Throws<GFTValidationException>(() =>
+            {
+                new Order(null);
+            });
+        }
+
+        [Test]
+        public void The_time_of_day_must_be_not_null_when_pass_a_time_of_day()
+        {
+            var order = new Order(TimeOfDay.Morning);
+
+            Assert.AreEqual(TimeOfDay.Morning, order.TimeOfDay);
+        }
+
+        [Test]
         public void Can_be_order_more_than_one_coffee_in_the_morning()
         {
             var dishes = new List<Dish>()
